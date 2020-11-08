@@ -60,7 +60,7 @@ public class forceExceptions {
             WebElement regButton = driver.findElement(By.xpath("//button[@name='register']"));
             regButton.click();
         } catch (NotFoundException e) {
-            System.out.println("Przycisku ZAREJESTRUJ SIĘ nie ma na stronie");
+            System.out.println("ZAREJESTRUJ SIĘ button is not present on the page");
         }
     }
 
