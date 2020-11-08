@@ -73,7 +73,7 @@ public class forceExceptions {
         try {
             wait.until(ExpectedConditions.attributeContains(By.linkText("ANKIETA"), "value", "1"));
         } catch (TimeoutException e) {
-            System.out.println("Minęło za dużo czasu, element nie załadował się");
+            System.out.println("Timeout, button has not been loaded in time");
         }
     }
 
@@ -85,7 +85,7 @@ public class forceExceptions {
         try {
             driver.findElement(By.id("rightClickInfo")).click();
         } catch (ElementNotInteractableException e) {
-            System.out.println("Element nie jest klikalny");
+            System.out.println("Element is not clickable");
         }
     }
 
