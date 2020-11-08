@@ -36,7 +36,7 @@ public class forceExceptions {
         try {
             driver.switchTo().alert();
         } catch (NoAlertPresentException e) {
-            System.out.println("Żaden alert nie jest obecny");
+            System.out.println("No alert is present on the website");
         }
     }
 
