@@ -36,7 +36,7 @@ public class forceExceptions {
         try {
             driver.switchTo().alert();
         } catch (NoAlertPresentException e) {
-            System.out.println("No alert is present on the website");
+            System.out.println("No alert is present on the page");
         }
     }
 
@@ -48,7 +48,7 @@ public class forceExceptions {
             WebElement regButton = driver.findElement(By.xpath("//button[@name='register']"));
             regButton.click();
         } catch (NoSuchElementException e) {
-            System.out.println("Przycisku ZAREJESTRUJ SIĘ nie ma na stronie");
+            System.out.println("ZAREJESTRUJ SIĘ button is not present on the page");
         }
     }
 
