@@ -1,0 +1,10 @@
+#gitignore
+
+*.log
+*.class
+*.jar
+*.war
+*.iml
+
+target/
+**/.idea/
