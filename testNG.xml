@@ -2,15 +2,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite name="SeleniumOnline">
-    <test name="Kurs">
-        <groups>
-            <run>
-                <exclude name="NotImportant"/>
-            </run>
-        </groups>
-        <classes>
-            <class name="randomTest"/>
-            <class name="randomTest2"/>
-        </classes>
+    <test name="test">
+        <packages>
+            <package name="test"></package>
+        </packages>
     </test>
 </suite>
