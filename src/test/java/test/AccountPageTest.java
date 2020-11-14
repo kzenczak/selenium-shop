@@ -3,12 +3,15 @@ package test;
 import base.TestBase;
 import helpers.GlobalMethods;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.AccountPage;
 import pages.HomePage;
 import pages.LoginPage;
+
+import java.net.MalformedURLException;
 
 public class AccountPageTest extends TestBase {
     HomePage homePage;
@@ -26,7 +29,7 @@ public class AccountPageTest extends TestBase {
 
     // Przed każdym testem uruchomienie przeglądarki wraz z zadeklarowanymi własnościami
     @BeforeMethod
-    public void setUp() {
+    public void setUp() throws MalformedURLException {
         initialization();
         homePage = new HomePage();
         loginPage = new LoginPage();
@@ -40,8 +43,14 @@ public class AccountPageTest extends TestBase {
 
     // Po każdym teście zamknięcie przeglądarki
     @AfterMethod
-    public void closeBrowser(){
-        driver.quit();
+    @AfterMethod
+    public void tearDown() {
+        getDriver().quit();
+    }
+
+    @AfterClass
+    void terminate() {
+        driver.remove();
     }
 
 

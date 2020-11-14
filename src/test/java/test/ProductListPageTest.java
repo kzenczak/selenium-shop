@@ -7,6 +7,7 @@ import pages.*;
 
 import base.*;
 
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -31,7 +32,7 @@ public class ProductListPageTest extends TestBase {
 
     // Przed każdym testem uruchomienie przeglądarki wraz z zadeklarowanymi własnościami
     @BeforeMethod
-    public void setUp() {
+    public void setUp() throws MalformedURLException {
         initialization();
         homePage = new HomePage();
         productListPage = new ProductListPage();

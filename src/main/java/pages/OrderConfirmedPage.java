@@ -2,6 +2,7 @@ package pages;
 
 import base.TestBase;
 import helpers.GlobalMethods;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -19,7 +20,7 @@ public class OrderConfirmedPage extends TestBase {
     /**** konstruktor ****/
     public OrderConfirmedPage(){
         globalMethods = new GlobalMethods();
-        PageFactory.initElements(driver, this);
+        PageFactory.initElements((WebDriver) driver, this);
     }
 
 

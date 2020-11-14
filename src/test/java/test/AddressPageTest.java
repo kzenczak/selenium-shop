@@ -11,6 +11,8 @@ import pages.AddressPage;
 import pages.HomePage;
 import pages.LoginPage;
 
+import java.net.MalformedURLException;
+
 public class AddressPageTest extends TestBase{
     HomePage homePage;
     LoginPage loginPage;
@@ -27,7 +29,7 @@ public class AddressPageTest extends TestBase{
 
     // Przed każdym testem uruchomienie przeglądarki wraz z zadeklarowanymi własnościami
     @BeforeMethod
-    public void setUp() {
+    public void setUp() throws MalformedURLException {
         initialization();
         homePage = new HomePage();
         loginPage = new LoginPage();

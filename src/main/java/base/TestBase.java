@@ -1,10 +1,6 @@
 package base;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -15,11 +11,11 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Properties;
-import java.util.concurrent.TimeUnit;
 
 
 public class TestBase {
-    public static WebDriver driver;
+    protected static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+    public base.DesiredCapabilities desiredCapabilities = new base.DesiredCapabilities();
     public static WebDriverWait wait;
     public static Properties config;
     public static Properties testdata;
@@ -50,11 +46,9 @@ public class TestBase {
     }
 
 
-
-    public static void initialization(){
+    public void initialization() throws MalformedURLException {
         DesiredCapabilities capabilities;
 
-        String url = config.getProperty("URL");
         String browser = config.getProperty("browser");
         String pageLoadTimeout = config.getProperty("pageLoadTimeout");
         String windowsMaximize = config.getProperty("windowsMaximize");
@@ -63,8 +57,17 @@ public class TestBase {
         String grid = config.getProperty("GRID");
 
 
+        driver.set(new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), desiredCapabilities.getCapabilities(browser)));
+
+    }
+
+    public WebDriver getDriver() {
+        String url = config.getProperty("URL");
+        return driver.get();
+    }
 
 
+        /*
 
         switch (browser) {
             case "chrome":
@@ -79,7 +82,7 @@ public class TestBase {
 
                     try {
 
-                        driver = new RemoteWebDriver(new URL("http://192.168.22.1:4444/wd/hub"), options);
+                        //driver = new RemoteWebDriver(new URL("http://192.168.22.1:4444/wd/hub"), options);
 
                     } catch (MalformedURLException e) {
                         e.printStackTrace();
@@ -118,7 +121,6 @@ public class TestBase {
                         "Obsługiwane następujące opcje: chrome, firefox, edge");
         }
 
-
         if(deleteAllCookies.equalsIgnoreCase("true")) {
             driver.manage().deleteAllCookies();
         }
@@ -130,6 +132,7 @@ public class TestBase {
         wait = new WebDriverWait(driver, Integer.parseInt(waitTimeout));
 
         driver.get(url);
+*/
 
-    }
+
 }

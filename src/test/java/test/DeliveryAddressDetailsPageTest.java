@@ -8,6 +8,8 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.*;
 
+import java.net.MalformedURLException;
+
 public class DeliveryAddressDetailsPageTest extends TestBase{
     HomePage homePage;
     LoginPage loginPage;
@@ -26,7 +28,7 @@ public class DeliveryAddressDetailsPageTest extends TestBase{
 
     // Przed każdym testem uruchomienie przeglądarki wraz z zadeklarowanymi własnościami
     @BeforeMethod
-    public void setUp() {
+    public void setUp() throws MalformedURLException {
         initialization();
         homePage = new HomePage();
         loginPage = new LoginPage();
