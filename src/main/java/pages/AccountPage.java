@@ -1,5 +1,6 @@
 package pages;
 
+import base.TLdriver;
 import base.TestBase;
 import helpers.GlobalMethods;
 import org.openqa.selenium.WebElement;
@@ -26,7 +27,7 @@ public class AccountPage extends TestBase {
     /**** konstruktor ****/
     public AccountPage (){
         globalMethods = new GlobalMethods();
-        PageFactory.initElements(driver, this);
+        PageFactory.initElements(TLdriver.getTLDriver(), this);
     }
 
 

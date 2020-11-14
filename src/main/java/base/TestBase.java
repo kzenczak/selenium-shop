@@ -1,21 +1,12 @@
 package base;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.Properties;
-import java.util.concurrent.TimeUnit;
 
 
 public class TestBase {
@@ -49,8 +40,18 @@ public class TestBase {
         }
     }
 
+    public void initialization() {
+        String browser = config.getProperty("browser");
+        String url = config.getProperty("URL");
+        String waitTimeout = config.getProperty("waitTimeout");
 
+        TLdriver.setTLDriver(browser);
+        wait = new WebDriverWait(TLdriver.getTLDriver(), Integer.parseInt(waitTimeout));
 
+        TLdriver.getTLDriver().navigate().to(url);
+    }
+
+/*
     public static void initialization(){
         DesiredCapabilities capabilities;
 
@@ -129,7 +130,6 @@ public class TestBase {
         driver.manage().timeouts().pageLoadTimeout(Integer.parseInt(pageLoadTimeout), TimeUnit.SECONDS);
         wait = new WebDriverWait(driver, Integer.parseInt(waitTimeout));
 
-        driver.get(url);
+        driver.get(url);*/
 
-    }
 }

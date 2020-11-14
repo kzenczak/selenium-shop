@@ -1,5 +1,6 @@
 package pages;
 
+import base.TLdriver;
 import base.TestBase;
 import helpers.GlobalMethods;
 import org.openqa.selenium.WebElement;
@@ -19,7 +20,7 @@ public class OrderConfirmedPage extends TestBase {
     /**** konstruktor ****/
     public OrderConfirmedPage(){
         globalMethods = new GlobalMethods();
-        PageFactory.initElements(driver, this);
+        PageFactory.initElements(TLdriver.getTLDriver(), this);
     }
 
 

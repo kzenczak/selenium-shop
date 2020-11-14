@@ -44,7 +44,7 @@ public class ProductListPageTest extends TestBase {
     // Po każdym teście zamknięcie przeglądarki
     @AfterMethod
     public void closeBrowser(){
-        driver.quit();
+        TLdriver.getTLDriver().quit();
     }
 
 

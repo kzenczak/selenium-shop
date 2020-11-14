@@ -1,5 +1,6 @@
 package helpers;
 
+import base.TLdriver;
 import base.TestBase;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
@@ -17,7 +18,7 @@ public class GlobalMethods extends TestBase {
 
 
     public String getPageTitle(){
-        String title = driver.getTitle();
+        String title = TLdriver.getTLDriver().getTitle();
         System.out.println("Page title: " + title);
         return title;
     }
@@ -39,7 +40,7 @@ public class GlobalMethods extends TestBase {
     }
 
     public void takeScreenshot(String pathname) throws Exception {
-        File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        File src = ((TakesScreenshot) TLdriver.getTLDriver()).getScreenshotAs(OutputType.FILE);
         File dest = new File("src/main/resources" + pathname + ".png");
         FileUtils.copyFile(src, dest);
     }

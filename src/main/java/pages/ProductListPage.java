@@ -1,5 +1,6 @@
 package pages;
 
+import base.TLdriver;
 import base.TestBase;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -26,7 +27,7 @@ public class ProductListPage extends TestBase {
 
     /**** konstruktor ****/
     public ProductListPage() {
-        PageFactory.initElements(driver, this);
+        PageFactory.initElements(TLdriver.getTLDriver(), this);
     }
 
 
