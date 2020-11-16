@@ -1,6 +1,10 @@
 package base;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -11,11 +15,11 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 
 public class TestBase {
-    protected static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
-    public base.DesiredCapabilities desiredCapabilities = new base.DesiredCapabilities();
+    public static WebDriver driver;
     public static WebDriverWait wait;
     public static Properties config;
     public static Properties testdata;
@@ -50,24 +54,13 @@ public class TestBase {
         DesiredCapabilities capabilities;
 
         String browser = config.getProperty("browser");
+        String url = config.getProperty("URL");
         String pageLoadTimeout = config.getProperty("pageLoadTimeout");
         String windowsMaximize = config.getProperty("windowsMaximize");
         String deleteAllCookies = config.getProperty("deleteAllCookies");
         String waitTimeout = config.getProperty("waitTimeout");
         String grid = config.getProperty("GRID");
 
-
-        driver.set(new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), desiredCapabilities.getCapabilities(browser)));
-
-    }
-
-    public WebDriver getDriver() {
-        String url = config.getProperty("URL");
-        return driver.get();
-    }
-
-
-        /*
 
         switch (browser) {
             case "chrome":
@@ -78,18 +71,11 @@ public class TestBase {
                 //options.setCapability(CapabilityType.VERSION, "86");
                 //options.setCapability(CapabilityType.PLATFORM_NAME, Platform.WIN10);
 
-                if(grid.equalsIgnoreCase("true")) {
+                if (grid.equalsIgnoreCase("true")) {
 
-                    try {
+                    driver = new RemoteWebDriver(new URL("http://192.168.22.1:4444/wd/hub"), options);
 
-                        //driver = new RemoteWebDriver(new URL("http://192.168.22.1:4444/wd/hub"), options);
-
-                    } catch (MalformedURLException e) {
-                        e.printStackTrace();
-                    }
-
-                }
-                else {
+                } else {
                     driver = new ChromeDriver(options);
                 }
                 break;
@@ -99,7 +85,7 @@ public class TestBase {
 
                 FirefoxOptions optionsff = new FirefoxOptions();
 
-                if(grid.equalsIgnoreCase("true")) {
+                if (grid.equalsIgnoreCase("true")) {
 
                     try {
 
@@ -109,8 +95,7 @@ public class TestBase {
                         e.printStackTrace();
                     }
 
-                }
-                else {
+                } else {
                     driver = new FirefoxDriver(optionsff);
                 }
 
@@ -121,10 +106,10 @@ public class TestBase {
                         "Obsługiwane następujące opcje: chrome, firefox, edge");
         }
 
-        if(deleteAllCookies.equalsIgnoreCase("true")) {
+        if (deleteAllCookies.equalsIgnoreCase("true")) {
             driver.manage().deleteAllCookies();
         }
-        if(windowsMaximize.equalsIgnoreCase("true")){
+        if (windowsMaximize.equalsIgnoreCase("true")) {
             driver.manage().window().maximize();
         }
 
@@ -132,7 +117,6 @@ public class TestBase {
         wait = new WebDriverWait(driver, Integer.parseInt(waitTimeout));
 
         driver.get(url);
-*/
 
-
+    }
 }

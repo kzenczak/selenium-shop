@@ -43,14 +43,13 @@ public class AccountPageTest extends TestBase {
 
     // Po każdym teście zamknięcie przeglądarki
     @AfterMethod
-    @AfterMethod
     public void tearDown() {
-        getDriver().quit();
+        driver.quit();
     }
 
     @AfterClass
     void terminate() {
-        driver.remove();
+        driver.quit();
     }
 
 

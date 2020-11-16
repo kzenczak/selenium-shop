@@ -17,7 +17,7 @@ public class GlobalMethods extends TestBase {
 
 
     public String getPageTitle(){
-        String title = getDriver().getTitle();
+        String title = driver.getTitle();
         System.out.println("Page title: " + title);
         return title;
     }
@@ -39,7 +39,7 @@ public class GlobalMethods extends TestBase {
     }
 
     public void takeScreenshot(String pathname) throws Exception {
-        File src = ((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.FILE);
+        File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         File dest = new File("src/main/resources" + pathname + ".png");
         FileUtils.copyFile(src, dest);
     }
