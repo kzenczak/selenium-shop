@@ -1,6 +1,5 @@
 package helpers;
 
-import base.TLdriver;
 import base.TestBase;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
@@ -18,7 +17,7 @@ public class GlobalMethods extends TestBase {
 
 
     public String getPageTitle(){
-        String title = TLdriver.getTLDriver().getTitle();
+        String title = driver.getTitle();
         System.out.println("Page title: " + title);
         return title;
     }
