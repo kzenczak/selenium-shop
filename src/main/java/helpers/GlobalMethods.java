@@ -40,7 +40,7 @@ public class GlobalMethods extends TestBase {
 
     public void takeScreenshot(String pathname) throws Exception {
         File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        File dest = new File("src/main/resources" + pathname + ".png");
+        File dest = new File("src/main/resources/screenshots/" + pathname + ".png");
         FileUtils.copyFile(src, dest);
     }
 
