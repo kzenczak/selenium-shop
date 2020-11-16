@@ -1,5 +1,6 @@
 package pages;
 
+import base.TLdriver;
 import base.TestBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -27,7 +28,11 @@ public class ProductListPage extends TestBase {
 
     /**** konstruktor ****/
     public ProductListPage() {
+<<<<<<< HEAD
         PageFactory.initElements((WebDriver) driver, this);
+=======
+        PageFactory.initElements(TLdriver.getTLDriver(), this);
+>>>>>>> main
     }
 
 

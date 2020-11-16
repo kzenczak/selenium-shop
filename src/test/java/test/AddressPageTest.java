@@ -1,5 +1,6 @@
 package test;
 
+import base.TLdriver;
 import base.TestBase;
 import helpers.GlobalMethods;
 import org.testng.Assert;
@@ -47,7 +48,7 @@ public class AddressPageTest extends TestBase{
     // Po każdym teście zamknięcie przeglądarki
     @AfterMethod
     public void closeBrowser(){
-        driver.quit();
+        TLdriver.getTLDriver().quit();
     }
 
 

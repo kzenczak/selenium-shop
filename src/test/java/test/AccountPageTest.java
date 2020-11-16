@@ -1,5 +1,6 @@
 package test;
 
+import base.TLdriver;
 import base.TestBase;
 import helpers.GlobalMethods;
 import org.testng.Assert;
@@ -47,10 +48,7 @@ public class AccountPageTest extends TestBase {
         driver.quit();
     }
 
-    @AfterClass
-    void terminate() {
-        driver.quit();
-    }
+
 
 
 

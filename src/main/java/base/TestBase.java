@@ -5,7 +5,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -49,74 +48,71 @@ public class TestBase {
         }
     }
 
-
     public void initialization() throws MalformedURLException {
-        DesiredCapabilities capabilities;
 
-        String browser = config.getProperty("browser");
-        String url = config.getProperty("URL");
-        String pageLoadTimeout = config.getProperty("pageLoadTimeout");
-        String windowsMaximize = config.getProperty("windowsMaximize");
-        String deleteAllCookies = config.getProperty("deleteAllCookies");
-        String waitTimeout = config.getProperty("waitTimeout");
-        String grid = config.getProperty("GRID");
+            String browser = config.getProperty("browser");
+            String url = config.getProperty("URL");
+            String pageLoadTimeout = config.getProperty("pageLoadTimeout");
+            String windowsMaximize = config.getProperty("windowsMaximize");
+            String deleteAllCookies = config.getProperty("deleteAllCookies");
+            String waitTimeout = config.getProperty("waitTimeout");
+            String grid = config.getProperty("GRID");
 
 
-        switch (browser) {
-            case "chrome":
-                System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") +
-                        "/src/main/resources/chromedriver.exe");
+            switch (browser) {
+                case "chrome":
+                    System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") +
+                            "/src/main/resources/chromedriver.exe");
 
-                ChromeOptions options = new ChromeOptions();
-                //options.setCapability(CapabilityType.VERSION, "86");
-                //options.setCapability(CapabilityType.PLATFORM_NAME, Platform.WIN10);
+                    ChromeOptions options = new ChromeOptions();
+                    //options.setCapability(CapabilityType.VERSION, "86");
+                    //options.setCapability(CapabilityType.PLATFORM_NAME, Platform.WIN10);
 
-                if (grid.equalsIgnoreCase("true")) {
+                    if (grid.equalsIgnoreCase("true")) {
 
-                    driver = new RemoteWebDriver(new URL("http://192.168.22.1:4444/wd/hub"), options);
+                        driver = new RemoteWebDriver(new URL("http://192.168.22.1:4444/wd/hub"), options);
 
-                } else {
-                    driver = new ChromeDriver(options);
-                }
-                break;
-            case "firefox":
-                System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir") +
-                        "/src/main/resources/geckodriver.exe");
+                    } else {
+                        driver = new ChromeDriver(options);
+                    }
+                    break;
+                case "firefox":
+                    System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir") +
+                            "/src/main/resources/geckodriver.exe");
 
-                FirefoxOptions optionsff = new FirefoxOptions();
+                    FirefoxOptions optionsff = new FirefoxOptions();
 
-                if (grid.equalsIgnoreCase("true")) {
+                    if (grid.equalsIgnoreCase("true")) {
 
-                    try {
+                        try {
 
-                        driver = new RemoteWebDriver(new URL("http://192.168.8.100:4444/wd/hub"), optionsff);
+                            driver = new RemoteWebDriver(new URL("http://192.168.8.100:4444/wd/hub"), optionsff);
 
-                    } catch (MalformedURLException e) {
-                        e.printStackTrace();
+                        } catch (MalformedURLException e) {
+                            e.printStackTrace();
+                        }
+
+                    } else {
+                        driver = new FirefoxDriver(optionsff);
                     }
 
-                } else {
-                    driver = new FirefoxDriver(optionsff);
-                }
+                    break;
 
-                break;
+                default:
+                    throw new IllegalArgumentException("Nierozpoznano typu przeglądarki internetowej." +
+                            "Obsługiwane następujące opcje: chrome, firefox, edge");
+            }
 
-            default:
-                throw new IllegalArgumentException("Nierozpoznano typu przeglądarki internetowej." +
-                        "Obsługiwane następujące opcje: chrome, firefox, edge");
+            if (deleteAllCookies.equalsIgnoreCase("true")) {
+                driver.manage().deleteAllCookies();
+            }
+            if (windowsMaximize.equalsIgnoreCase("true")) {
+                driver.manage().window().maximize();
+            }
+
+            driver.manage().timeouts().pageLoadTimeout(Integer.parseInt(pageLoadTimeout), TimeUnit.SECONDS);
+            wait = new WebDriverWait(driver, Integer.parseInt(waitTimeout));
+
+            driver.get(url);
         }
-
-        if (deleteAllCookies.equalsIgnoreCase("true")) {
-            driver.manage().deleteAllCookies();
-        }
-        if (windowsMaximize.equalsIgnoreCase("true")) {
-            driver.manage().window().maximize();
-        }
-
-        driver.manage().timeouts().pageLoadTimeout(Integer.parseInt(pageLoadTimeout), TimeUnit.SECONDS);
-        wait = new WebDriverWait(driver, Integer.parseInt(waitTimeout));
-
-        driver.get(url);
-
-    }
 }
