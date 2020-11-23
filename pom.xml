@@ -10,6 +10,8 @@
     <properties>
         <maven.compiler.source>12</maven.compiler.source>
         <maven.compiler.target>12</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
 
 <dependencies>
@@ -27,17 +29,11 @@
         <artifactId>selenium-java</artifactId>
         <version>3.141.59</version>
     </dependency>
-    <dependency>
+    <!--<dependency>
         <groupId>com.selenium-online</groupId>
         <artifactId>selenium-online</artifactId>
         <version>1.0-SNAPSHOT</version>
-    </dependency>
-    <dependency>
-        <groupId>org.testng</groupId>
-        <artifactId>testng</artifactId>
-        <version>7.3.0</version>
-        <scope>compile</scope>
-    </dependency>
+    </dependency>-->
     <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
     <dependency>
         <groupId>commons-io</groupId>
@@ -51,7 +47,35 @@
         <artifactId>poi</artifactId>
         <version>4.1.2</version>
     </dependency>
+    <dependency>
+        <groupId>org.testng</groupId>
+        <artifactId>testng</artifactId>
+        <version>7.3.0</version>
+        <scope>compile</scope>
+    </dependency>
 
 
 </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M5</version>
+                <configuration>
+                    <systemPropertyVariables>
+                        <!--suppress UnresolvedMavenProperty -->
+                        <User>${User}</User>
+                        <!--suppress UnresolvedMavenProperty -->
+                        <Password>${Password}</Password>
+                    </systemPropertyVariables>
+                <suiteXmlFiles>
+                    <suiteXmlFile>testNG.xml</suiteXmlFile>
+                </suiteXmlFiles>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    
 </project>

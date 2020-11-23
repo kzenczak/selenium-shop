@@ -2,10 +2,10 @@ package test;
 
 import base.TestBase;
 import helpers.GlobalMethods;
-import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 import pages.AccountPage;
 import pages.AddressPage;
 import pages.HomePage;
@@ -19,6 +19,8 @@ public class AddressPageTest extends TestBase{
     AccountPage accountPage;
     AddressPage addressPage;
     GlobalMethods globalMethods;
+
+    private SoftAssert softAssert = new SoftAssert();
 
     /********* konstruktor ***********/
     public AddressPageTest() {
@@ -39,7 +41,7 @@ public class AddressPageTest extends TestBase{
 
 
         loginPage = homePage.goToLoginPage();
-        accountPage = loginPage.login(testdata.getProperty("userLogin"), testdata.getProperty("userPassword"));
+        accountPage = loginPage.login(user, password);
         addressPage = accountPage.goToAddresses();
 
         }
@@ -54,7 +56,7 @@ public class AddressPageTest extends TestBase{
     /*********  TESTY *********/
     @Test(priority = 0)
     public void verifyNoDeliveryAddress() throws Exception {
-        Assert.assertEquals(addressPage.getInfoDeliveryAddress(),
+        softAssert.assertEquals(addressPage.getInfoDeliveryAddress(),
                 testdata.getProperty("correctInfoAboutDeliveryAddress"));
 
         globalMethods.takeScreenshot("deliveryAddress");

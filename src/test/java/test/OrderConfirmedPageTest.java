@@ -40,7 +40,7 @@ public class OrderConfirmedPageTest extends TestBase {
 
 
         loginPage = homePage.goToLoginPage();
-        accountPage = loginPage.login(testdata.getProperty("userLogin"), testdata.getProperty("userPassword"));
+        accountPage = loginPage.login(user, password);
         accountPage.goToOrders();
     }
 

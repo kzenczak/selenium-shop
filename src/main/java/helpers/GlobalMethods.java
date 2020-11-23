@@ -34,7 +34,7 @@ public class GlobalMethods extends TestBase {
 
     public String getTextFromElement(WebElement element){
         wait.until(visibilityOf(element));
-        String  text = element.getText();
+        String text = element.getText();
         return text;
     }
 

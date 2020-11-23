@@ -4,7 +4,9 @@
 <suite name="SeleniumOnline">
     <test name="test">
         <packages>
-            <package name="test"></package>
+            <package name="test">
+                <exclude name="DeliveryAddressDetailsPageTest"></exclude>
+            </package>
         </packages>
     </test>
 </suite>

@@ -3,8 +3,12 @@ package base;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.opera.OperaDriver;
+import org.openqa.selenium.opera.OperaOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -22,6 +26,9 @@ public class TestBase {
     public static WebDriverWait wait;
     public static Properties config;
     public static Properties testdata;
+
+    public static String user;
+    public static String password;
 
 
     public TestBase(){
@@ -58,6 +65,11 @@ public class TestBase {
             String waitTimeout = config.getProperty("waitTimeout");
             String grid = config.getProperty("GRID");
 
+            user = System.getProperty("User");
+            password = System.getProperty("Password");
+
+            user = "UserTest3";
+            password = "HasloTestowe3";
 
             switch (browser) {
                 case "chrome":
@@ -66,27 +78,30 @@ public class TestBase {
 
                     ChromeOptions options = new ChromeOptions();
                     //options.setCapability(CapabilityType.VERSION, "86");
-                    //options.setCapability(CapabilityType.PLATFORM_NAME, Platform.WIN10);
+                    //options.setCapability(CapabilityType.PLATFORM_NAME, Platform.LINUX);
 
                     if (grid.equalsIgnoreCase("true")) {
 
-                        driver = new RemoteWebDriver(new URL("http://192.168.22.1:4444/wd/hub"), options);
+                        driver = new RemoteWebDriver(new URL("http://192.168.56.1:4444/wd/hub"), options);
 
                     } else {
                         driver = new ChromeDriver(options);
                     }
                     break;
+
                 case "firefox":
                     System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir") +
                             "/src/main/resources/geckodriver.exe");
 
                     FirefoxOptions optionsff = new FirefoxOptions();
+                    //optionsff.setCapability(CapabilityType.PLATFORM_NAME, Platform.WINDOWS);
+
 
                     if (grid.equalsIgnoreCase("true")) {
 
                         try {
 
-                            driver = new RemoteWebDriver(new URL("http://192.168.8.100:4444/wd/hub"), optionsff);
+                            driver = new RemoteWebDriver(new URL("http://192.168.56.1:4444/wd/hub"), optionsff);
 
                         } catch (MalformedURLException e) {
                             e.printStackTrace();
@@ -98,9 +113,56 @@ public class TestBase {
 
                     break;
 
+                case "opera":
+                    System.setProperty("webdriver.opera.driver", System.getProperty("user.dir") +
+                            "/src/main/resources/operadriver.exe");
+
+                    OperaOptions optionsop = new OperaOptions();
+
+                    if (grid.equalsIgnoreCase("true")) {
+
+                        try {
+
+                            driver = new RemoteWebDriver(new URL("http://192.168.56.1:4444/wd/hub"), optionsop);
+
+                        } catch (MalformedURLException e) {
+                            e.printStackTrace();
+                        }
+
+                    } else {
+                        driver = new OperaDriver(optionsop);
+                    }
+
+                    break;
+
+                case "edge":
+                    System.setProperty("webdriver.edge.driver", System.getProperty("user.dir") +
+                            "/src/main/resources/msedgedriver.exe");
+
+                    EdgeOptions optionsedg = new EdgeOptions();
+                    //optionsedg.setCapability(CapabilityType.PLATFORM_NAME, Platform.WINDOWS);
+
+
+                    if (grid.equalsIgnoreCase("true")) {
+
+                        try {
+
+                            driver = new RemoteWebDriver(new URL("http://192.168.56.1:4444/wd/hub"), optionsedg);
+
+                        } catch (MalformedURLException e) {
+                            e.printStackTrace();
+                        }
+
+                    } else {
+                        driver = new EdgeDriver(optionsedg);
+                    }
+
+                    break;
+
+
                 default:
                     throw new IllegalArgumentException("Nierozpoznano typu przeglądarki internetowej." +
-                            "Obsługiwane następujące opcje: chrome, firefox, edge");
+                            "Obsługiwane następujące opcje: chrome, firefox, edge, opera");
             }
 
             if (deleteAllCookies.equalsIgnoreCase("true")) {

@@ -1,10 +1,8 @@
 package pages;
 
-import base.TLdriver;
 import base.TestBase;
 import helpers.GlobalMethods;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -44,11 +42,7 @@ public class DeliveryAddressDetailsPage extends TestBase {
     /**** konstruktor ****/
     public DeliveryAddressDetailsPage(){
         globalMethods = new GlobalMethods();
-<<<<<<< HEAD
-        PageFactory.initElements((WebDriver) driver, this);
-=======
-        PageFactory.initElements(TLdriver.getTLDriver(), this);
->>>>>>> main
+        PageFactory.initElements(driver, this);
     }
 
     public void setCountry(String country){
