@@ -29,11 +29,6 @@
         <artifactId>selenium-java</artifactId>
         <version>3.141.59</version>
     </dependency>
-    <!--<dependency>
-        <groupId>com.selenium-online</groupId>
-        <artifactId>selenium-online</artifactId>
-        <version>1.0-SNAPSHOT</version>
-    </dependency>-->
     <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
     <dependency>
         <groupId>commons-io</groupId>
@@ -53,6 +48,14 @@
         <version>7.3.0</version>
         <scope>compile</scope>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/com.relevantcodes/extentreports -->
+    <dependency>
+        <groupId>com.relevantcodes</groupId>
+        <artifactId>extentreports</artifactId>
+        <version>2.41.2</version>
+    </dependency>
+
+
 
 
 </dependencies>
@@ -69,10 +72,22 @@
                         <User>${User}</User>
                         <!--suppress UnresolvedMavenProperty -->
                         <Password>${Password}</Password>
+                        <!--suppress UnresolvedMavenProperty -->
+                        <Browser>${Browser}</Browser>
+                        <!--suppress UnresolvedMavenProperty -->
+                        <windowsMaximize>${windowsMaximize}</windowsMaximize>
+                        <!--suppress UnresolvedMavenProperty -->
+                        <deleteAllCookies>${deleteAllCookies}</deleteAllCookies>
+                        <!--suppress UnresolvedMavenProperty -->
+                        <pageLoadTimeout>${pageLoadTimeout}</pageLoadTimeout>
+                        <!--suppress UnresolvedMavenProperty -->
+                        <waitTimeout>${waitTimeout}</waitTimeout>
+                        <!--suppress UnresolvedMavenProperty -->
+                        <URL>${URL}</URL>
                     </systemPropertyVariables>
-                <suiteXmlFiles>
-                    <suiteXmlFile>testNG.xml</suiteXmlFile>
-                </suiteXmlFiles>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>testNG.xml</suiteXmlFile>
+                    </suiteXmlFiles>
                 </configuration>
             </plugin>
         </plugins>

@@ -29,7 +29,12 @@ public class TestBase {
 
     public static String user;
     public static String password;
-
+    public static String browser;
+    public static String windowsMaximize;
+    public static String deleteAllCookies;
+    public static String url;
+    public static int pageLoadTimeout;
+    public static int waitTimeout;
 
     public TestBase(){
         try {
@@ -57,19 +62,27 @@ public class TestBase {
 
     public void initialization() throws MalformedURLException {
 
-            String browser = config.getProperty("browser");
+          /*  String browser = config.getProperty("browser");
             String url = config.getProperty("URL");
-            String pageLoadTimeout = config.getProperty("pageLoadTimeout");
+            int pageLoadTimeout = Integer.parseInt(config.getProperty("pageLoadTimeout"));
             String windowsMaximize = config.getProperty("windowsMaximize");
             String deleteAllCookies = config.getProperty("deleteAllCookies");
-            String waitTimeout = config.getProperty("waitTimeout");
+            int waitTimeout = Integer.parseInt(config.getProperty("waitTimeout"));*/
             String grid = config.getProperty("GRID");
+
 
             user = System.getProperty("User");
             password = System.getProperty("Password");
+            browser = System.getProperty("Browser");
+            windowsMaximize = System.getProperty("windowsMaximize");
+            deleteAllCookies = System.getProperty("deleteAllCookies");
+            url = System.getProperty("URL");
+            pageLoadTimeout = Integer.parseInt(System.getProperty("pageLoadTimeout"));
+            waitTimeout = Integer.parseInt(System.getProperty("waitTimeout"));
 
-            user = "UserTest3";
-            password = "HasloTestowe3";
+
+//            user = "UserTest3";
+//            password = "HasloTestowe3";
 
             switch (browser) {
                 case "chrome":
@@ -172,8 +185,8 @@ public class TestBase {
                 driver.manage().window().maximize();
             }
 
-            driver.manage().timeouts().pageLoadTimeout(Integer.parseInt(pageLoadTimeout), TimeUnit.SECONDS);
-            wait = new WebDriverWait(driver, Integer.parseInt(waitTimeout));
+            driver.manage().timeouts().pageLoadTimeout(pageLoadTimeout, TimeUnit.SECONDS);
+            wait = new WebDriverWait(driver, waitTimeout);
 
             driver.get(url);
         }

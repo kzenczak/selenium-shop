@@ -3,7 +3,7 @@
     <configuration>
         <!-- report theme -->
         <!-- standard, dark -->
-        <theme>standard</theme>
+        <theme>dark</theme>
 
         <!-- document encoding -->
         <!-- defaults to UTF-8 -->
@@ -14,10 +14,10 @@
         <protocol>https</protocol>
 
         <!-- title of the document -->
-        <documentTitle>Extent</documentTitle>
+        <documentTitle>Extent Report for test-repo</documentTitle>
 
         <!-- report name - displayed at top-nav -->
-        <reportName>Automation Report</reportName>
+        <reportName>test-repo Automation Report</reportName>
 
         <!-- location of charts in the test view -->
         <!-- top, bottom -->
